@@ -1,12 +1,11 @@
 using System.Collections.Generic;
+using FluentValidation.Results;
 
 namespace RestApi.Models
 {
     public interface IProductService
     {
-        IEnumerable<Product> GetProducts();
-        void InsertProduct(Product product);
-        bool IsSoftplan(string description);
-        (bool, string) CheckParameters(Product product);
+        List<Product> GetProducts();
+        (bool,string) InsertProduct(Product product);
     }
 }

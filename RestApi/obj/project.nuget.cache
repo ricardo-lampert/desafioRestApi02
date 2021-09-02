@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "i6tDlwv9qI/bCrOjpUBQfE401QOhJXea4rjPUUe3ff3y4PIOtXk3kPC4M2TTdTaLe1ikiBm37OWvECI/jgTAvA==",
+  "dgSpecHash": "SdVB1u1d51+FzvD6TzLLX5bN50y+Pv7c10jZ7aLIYffFfx/twqU3wUcLdrudDIipW2CvmXPKvAeTNp8Y/6zKhQ==",
   "success": true,
   "projectFilePath": "/home/ricardo/Desktop/git-soft/restApi02/RestApi/RestApi.csproj",
   "expectedPackageFiles": [
+    "/home/ricardo/.nuget/packages/fluentvalidation/10.3.3/fluentvalidation.10.3.3.nupkg.sha512",
     "/home/ricardo/.nuget/packages/microsoft.aspnetcore.mvc.testing/5.0.9/microsoft.aspnetcore.mvc.testing.5.0.9.nupkg.sha512",
     "/home/ricardo/.nuget/packages/microsoft.aspnetcore.testhost/5.0.9/microsoft.aspnetcore.testhost.5.0.9.nupkg.sha512",
     "/home/ricardo/.nuget/packages/microsoft.entityframeworkcore/5.0.9/microsoft.entityframeworkcore.5.0.9.nupkg.sha512",

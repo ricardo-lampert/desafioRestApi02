@@ -2,9 +2,18 @@ using RestApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
+using System;
+using FluentValidation.Results;
+
 namespace RestApi.Controllers
 {
-    [Route("api02")]
+    static class Constants
+    {
+        public const string route = "api02";
+        public const string insertEndpoint = "insert";
+    }
+
+    [Route(Constants.route)]
     [ApiController]
     public class ProductController : ControllerBase
     {
@@ -18,23 +27,18 @@ namespace RestApi.Controllers
         {
             return Ok(productService.GetProducts());
         }
-        [HttpPost("insert")]
+        [HttpPost(Constants.insertEndpoint)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult<string> InsertProduct(Product product)
         {
-            if (productService.IsSoftplan(product.Description))
+            (bool ok,string message) = productService.InsertProduct(product);
+            if(ok)
             {
-                product.Category = "Softplan";
-            }
-            (bool status, string message) = productService.CheckParameters(product);
-            if (status)
-            {
-                productService.InsertProduct(product);
                 return Ok(message);
             }
-            
             return BadRequest(message);
+
         }
     }
 }

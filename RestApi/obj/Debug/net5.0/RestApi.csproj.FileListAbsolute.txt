@@ -108,3 +108,4 @@
 /home/ricardo/Desktop/git-soft/restApi02/RestApi/bin/Debug/net5.0/Microsoft.AspNetCore.TestHost.dll
 /home/ricardo/Desktop/git-soft/restApi02/RestApi/bin/Debug/net5.0/Microsoft.Extensions.DependencyModel.dll
 /home/ricardo/Desktop/git-soft/restApi02/RestApi/bin/Debug/net5.0/System.IO.Pipelines.dll
+/home/ricardo/Desktop/git-soft/restApi02/RestApi/bin/Debug/net5.0/FluentValidation.dll

@@ -1,74 +1,49 @@
 using System.Collections.Generic;
 using System.Linq;
 using System;
-
-using System.Net.Http;
 using System.IO;
 using System.Net;
+using FluentValidation.Results;
 
 namespace RestApi.Models
 {
     
     public class ProductService : IProductService
     {
-        private readonly ProductContext productContext;
+        private readonly ProductContext context;
 
-        public ProductService(ProductContext context)
+        private IProductGateway gateway;
+        private Product.Validator validator;
+        private Product product;
+
+        public ProductService(ProductContext productContext, IProductGateway productGateway)
         {
-            productContext = context;
+            
+            validator = new Product.Validator();
+            product = new Product();
+            
+            gateway = productGateway;
+            context = productContext;
         }
-        public IEnumerable<Product> GetProducts()
+
+        public List<Product> GetProducts()
         {
-            return productContext.Products.OrderBy(o=>o.Description).ToList();
+            return context.Products.OrderBy(o=>o.Description).ToList();
         }
-        public bool IsSoftplan(string description)
+
+        public (bool,string) InsertProduct (Product product)
         {
-            if(description!=null)
+            product = product.UpdateCategory(product);
+            ValidationResult results = validator.Validate(product);
+            if(!results.IsValid) 
             {
-                return description.Contains("Softplayer");;
+                return (false,results.Errors[0].ErrorMessage);
             }
-            return false;  
-        }
-        public (bool, string) CheckParameters(Product product)
-        {
-            if(product.Description==null)
-                return (false,"O preenchimento da descrição é obrigatório");
-            else if(product.Description.Length>50)
-                return (false,"O tamanho máximo da descrição é de 50 caracteres");
-            else if(product.Category==null)
-                return (false,"O preenchimento da categoria é obrigatório");
-            else if(product.Cost<=0)
-                return (false,"O preenchimento do preço de custo é obrigatório");
+            product.Date = DateTime.Now;
+            product.Price = gateway.GetPrice(product.Category,product.Cost);
+            context.Add(product);
+            context.SaveChanges();
             return (true,"O produto foi salvo com sucesso");
         }
-
-        public void InsertProduct(Product product)
-        {
-            product.Date = DateTime.Now;
-            product.Price = GetPrice(product);
-            productContext.Add(product);
-            productContext.SaveChanges();
-        }
-
-        public virtual float GetPrice(Product product)
-        {
-            string url = "http://localhost:5000/api01/price?category="+product.Category+"&cost="+product.Cost;
-            var requisicaoWeb = WebRequest.CreateHttp(url);         
-            requisicaoWeb.Method = "GET";
-            requisicaoWeb.UserAgent = "RequisicaoWebDemo";
-            float price = 0;
-            using (var resposta = requisicaoWeb.GetResponse())
-            {
-                var streamDados = resposta.GetResponseStream();
-                StreamReader reader = new StreamReader(streamDados);
-                string response = reader.ReadToEnd().ToString();
-                streamDados.Close();
-                resposta.Close();
-                price = float.Parse(response);
-            }
-            
-            return price;
-        }
-
     }
 }

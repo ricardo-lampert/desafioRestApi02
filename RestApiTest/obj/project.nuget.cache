@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "byeoZil9jHXMjVpAy7i5vMtWGM0O/lUdDUl4lCAImM7MmH5vWeewITO8kOoZoteZZhg1jlrmvc7tLtMGEmRdeg==",
+  "dgSpecHash": "l/hvgh01xeVbswv6ArUtywUqHXKu5EpMxY/dhuChKpg5OfZMkto7g5mYOIEYJVWb7gzN93TNSkXCH/uFocIarQ==",
   "success": true,
   "projectFilePath": "/home/ricardo/Desktop/git-soft/restApi02/RestApiTest/RestApiTest.csproj",
   "expectedPackageFiles": [
     "/home/ricardo/.nuget/packages/castle.core/4.4.0/castle.core.4.4.0.nupkg.sha512",
     "/home/ricardo/.nuget/packages/coverlet.collector/3.0.2/coverlet.collector.3.0.2.nupkg.sha512",
+    "/home/ricardo/.nuget/packages/fluentvalidation/10.3.3/fluentvalidation.10.3.3.nupkg.sha512",
     "/home/ricardo/.nuget/packages/microsoft.aspnetcore.antiforgery/2.2.0/microsoft.aspnetcore.antiforgery.2.2.0.nupkg.sha512",
     "/home/ricardo/.nuget/packages/microsoft.aspnetcore.authentication.abstractions/2.2.0/microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "/home/ricardo/.nuget/packages/microsoft.aspnetcore.authentication.core/2.2.0/microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",

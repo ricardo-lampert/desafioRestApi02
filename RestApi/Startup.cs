@@ -25,6 +25,7 @@ namespace RestApi
             services.AddDbContext<ProductContext>(opt =>
                 opt.UseInMemoryDatabase("ProductList"));
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IProductGateway, ProductGateway>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
